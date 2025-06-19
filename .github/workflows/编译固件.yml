@@ -95,8 +95,10 @@ jobs:
     - name: 克隆源码
       working-directory: /workdir
       run: |
-        git clone $REPO_URL -b $REPO_BRANCH openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        git clone https://github.com/miaoermua/CatWrt.git openwrt
+        cd openwrt
+        git checkout main  # 使用 CatWrt 的分支
+        git submodule update --init --recursive  # 确保子模块拉取
 
     - name: 加载自定义feeds
       run: |
